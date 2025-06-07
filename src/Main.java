@@ -1,15 +1,34 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner scanner = new Scanner(System.in);
+        int testCases = scanner.nextInt();
+        int trieSizeN = scanner.nextInt();
+        int trieSizeK = scanner.nextInt();
+        scanner.nextLine();
+        Trie root = new Trie();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        for (int i = 0; i < testCases; i++) {
+            String[] commands = scanner.nextLine().split("\\s+");
+            String command = commands[0];
+            if (!command.equals("P")) {
+                int key = Integer.parseInt(commands[1]);
+                if (command.equals("I")) {
+                    root.insertKey(root, key, trieSizeN, trieSizeK);
+                }
+                else if (command.equals("L")) {
+                }
+                else if (command.equals("D")) {
+                }
+            }
+            else {
+                root.print(root, root, trieSizeN, trieSizeK);
+            }
         }
+
+        scanner.close();
     }
+
+
 }
