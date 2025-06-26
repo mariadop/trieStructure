@@ -19,7 +19,7 @@ public class Trie {
         return (node == root) ? nChildren : kChildren;
     }
 
-    public void insertKey(Trie root, int key, int nChildren, int kChildren) {
+    public void insertKey(int key, Trie root, int nChildren, int kChildren) {
         if (root.key == -1) {
             root.key = key;
             return;
@@ -61,6 +61,38 @@ public class Trie {
             indexToCheck = division % howManyChildren;
             division /= howManyChildren;
         }
+    }
+
+    public void printKeyStatus(int key, Trie root, int nChildren, int kChildren) {
+        if (root.key == key) {
+            System.out.println(key + " exists");
+            return;
+        }
+        Trie toCheck = root;
+        int division = key;
+        int indexToCheck = 0;
+
+        while (toCheck != null) {
+            if (toCheck.key == key) {
+                System.out.println(key + " exists");
+                return;
+            }
+
+            if (toCheck.children == null) {
+                System.out.println(key + " doesn't exist");
+                return;
+            }
+            int howManyChildren = getChildCount(toCheck, root, nChildren, kChildren);
+            indexToCheck = division % howManyChildren;
+            division /= howManyChildren;
+
+            toCheck = toCheck.children[indexToCheck];
+        }
+        System.out.println(key + " doesn't exist");
+    }
+
+    public void deleteKey(int key, Trie root, int nChildren, int kChildren) {
+
     }
 
     public void print(Trie node, Trie root, int nChildren, int kChildren) {

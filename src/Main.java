@@ -8,6 +8,7 @@ public class Main {
         int trieSizeK = scanner.nextInt();
         scanner.nextLine();
         Trie root = new Trie();
+        root.children = new Trie[trieSizeN];
 
         for (int i = 0; i < testCases; i++) {
             String[] commands = scanner.nextLine().split("\\s+");
@@ -15,9 +16,10 @@ public class Main {
             if (!command.equals("P")) {
                 int key = Integer.parseInt(commands[1]);
                 if (command.equals("I")) {
-                    root.insertKey(root, key, trieSizeN, trieSizeK);
+                    root.insertKey(key, root, trieSizeN, trieSizeK);
                 }
                 else if (command.equals("L")) {
+                    root.printKeyStatus(key, root, trieSizeN, trieSizeK);
                 }
                 else if (command.equals("D")) {
                 }
